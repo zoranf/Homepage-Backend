@@ -11,6 +11,6 @@ class User extends MY_Controller
 
             $this->_returnAjax(false);
         }
-        $this->_returnAjax();
+        $this->_returnAjax(true);
     }
 }

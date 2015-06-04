@@ -12,13 +12,13 @@ class MY_Controller extends CI_Controller
         $this->data = json_decode($this->data);
     }
 
-    protected function _returnAjax($success = true, $data = [])
+    protected function _returnAjax($success, $data = [])
     {
         $return = [
             "success"   =>  $success,
             "data"      =>  $data
         ];
-        print json_encode([$return]);
+        print json_encode($return);
         die();
     }
 }
