@@ -1,21 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends CI_Controller
+class User extends MY_Controller
 {
     public function login()
     {
-
         $this->config->load("siteconfig");
 
-        $data = $this->input->post();
+        if ($this->data->username !== $this->config->item("admin_username") || $this->data->password !== $this->config->item("admin_password")) {
 
-        if ($data["username"] == $this->config->item("admin_username") && $data["password"] == $this->config->item("admin_password")) {
-
-            echo "SUCCESS!"
+            $this->_returnAjax(false);
         }
-
-
-        print json_encode($array);die();
+        $this->_returnAjax();
     }
 }
