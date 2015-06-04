@@ -5,6 +5,10 @@ class Data extends CI_Controller
 {
     public function advertisements()
     {
-        echo "advertisement list";die();
+        // test response
+        $array = [
+            "advertisements" => ["slika1.png", "slika2.png"]
+        ];
+        print json_encode($array);die();
     }
 }
