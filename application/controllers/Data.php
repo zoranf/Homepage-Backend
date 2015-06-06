@@ -1,15 +1,19 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Data extends MY_Controller {
+class Data extends MY_Controller
+{
+    public function getAds()
+    {
+        // test response
+        $array = [
+            "advertisements" => ["slika1.png", "slika2.png"]
+        ];
+        $this->load->model("Advertisements_model");
+        $data = $this->Advertisements_model->get_last_ten_entries();
+        var_dump($data);die();
 
-    // Returns array of Advertisements
-    public function getAds() {
-
-      $this->load->model('Advertisements_model');
-      $data = $this->Advertisements_model->getList();
-
-      return $this->_returnAjax(true, $data);
+        print json_encode($array);die();
     }
 
     public function postAds()
