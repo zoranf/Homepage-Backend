@@ -5,7 +5,7 @@ class Data extends MY_Controller
 {
     public function getAds()
     {
-        // test response
+        // test response --
         $array = [
             "advertisements" => ["slika1.png", "slika2.png"]
         ];
