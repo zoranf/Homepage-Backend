@@ -5,15 +5,10 @@ class Data extends MY_Controller
 {
     public function getAds()
     {
-        // test response --
-        $array = [
-            "advertisements" => ["slika1.png", "slika2.png"]
-        ];
         $this->load->model("Advertisements_model");
-        $data = $this->Advertisements_model->get_last_ten_entries();
-        var_dump($data);die();
+        $data = $this->Advertisements_model->getAdList();
 
-        print json_encode($array);die();
+        return $this->_returnAjax(true, $data);
     }
 
     public function postAds()

@@ -3,14 +3,17 @@
 class Advertisements_model extends CI_Model {
 
     function __construct() {
+
         // Call the Model constructor
         parent::__construct();
     }
 
+    // Get all entries from advertisement
     function getAdList() {
 
-        $sql = "SELECT * FROM advertisements ORDER BY enabled DESC";
+        $sql = "SELECT * FROM advertisement ORDER BY enabled DESC";
+        $query = $this->db->query($sql);
 
-        return $this->db->query($sql).result();
+        return $query->result();
     }
 }
