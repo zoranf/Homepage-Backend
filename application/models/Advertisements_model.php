@@ -18,23 +18,31 @@ class Advertisements_model extends CI_Model {
     }
 
     // Insert advertisement
-    function add($data) {
+    function add($title, $picture, $enabled) {
 
-        $this->db->insert("advertisement", $data);
-        die();
+        $sql = "INSERT INTO advertisement (title, picture, enabled)
+        		VALUES (?, ?, ?)";
+
+
+        return $this->db->query($sql, array($title, $picture, $enabled));
     }
 
     // Delete advertisement
-    function delete($data) {
+    function delete($id) {
 
-        $this->db->delete("advertisement", $data);
-        die();
+        $sql = "DELETE FROM advertisement
+                WHERE id = ?";
+
+        return $this->db->query($sql, $id);
     }
 
     // Enable advertisement
-    function enable($id, $boolean) {
+    function enable($id, $enabled) {
 
-        $this->db->update("advertisement", array("enabled" => $boolean), array("id" => $id));;
-        die();
+        $sql = "UPDATE advertisement
+                SET enabled = ?
+                WHERE id = ?";
+
+        return $this->db->query($sql, array($enabled, $id));
     }
 }
