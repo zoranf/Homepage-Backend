@@ -30,7 +30,7 @@ class Advertisements_model extends CI_Model {
     // Delete advertisement
     function delete($id) {
 
-        $sql = "DELETE FROM advertisement
+        $sql = "DELETE FROM advertisements
                 WHERE id = ?";
 
         return $this->db->query($sql, $id);

@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Data extends MY_Controller {
-
-    function __construct() {
-
+class Data extends MY_Controller
+{
+    function __construct()
+    {
         parent::__construct();
 
         // Load Advertisements_model
