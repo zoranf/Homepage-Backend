@@ -22,30 +22,32 @@ class Data extends MY_Controller {
     // Add new advertisement
     public function postAds($title, $picture, $enabled) {
 
-        $data = [
-            "title"     => $title,
-            "picture"   => $picture,
-            "enabled"   => $enabled
-        ];
+        $this->Advertisements_model->add($title, $picture, $enabled);
 
-        $this->Advertisements_model->add($data);
+        return $this->_returnAjax(true, array($title, $picture, $enabled));
     }
 
     // Delete spcific advertisement
     public function deleteAds($id) {
 
-        $this->Advertisements_model->delete(array("id" => $id));
+        $this->Advertisements_model->delete($id);
+
+        return $this->_returnAjax(true, $id);
     }
 
     // Enable / spcific ad
     public function enableAd($id) {
 
         $this->Advertisements_model->enable($id, 1);
+
+        return $this->_returnAjax(true, $id);
     }
 
     // Disable spcific ad
     public function disableAd($id) {
 
         $this->Advertisements_model->enable($id, 0);
+
+        return $this->_returnAjax(true, $id);
     }
 }
