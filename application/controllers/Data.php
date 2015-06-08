@@ -29,7 +29,7 @@ class Data extends MY_Controller {
 
     // Delete spcific advertisement
     public function deleteAds($id) {
-        $this->_access("DELETE");
+        $this->_access("delete");
         $this->Advertisements_model->delete($id);
 
         return $this->_returnAjax(true, $id);
