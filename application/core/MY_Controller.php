@@ -21,4 +21,11 @@ class MY_Controller extends CI_Controller
         print json_encode($return);
         die();
     }
+
+    protected function _access($allowedMethod)
+    {
+        if ($this->input->method() !== $allowedMethod) {
+            $this->_returnAjax(false, ["message" => "Access restricted due to wrong request method."]);
+        }
+    }
 }
