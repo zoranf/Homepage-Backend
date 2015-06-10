@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Advertisements extends MY_Controller {
+class Advertisements extends MY_Controller
+{
 
     function __construct()
     {
