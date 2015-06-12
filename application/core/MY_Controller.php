@@ -35,7 +35,7 @@ class MY_Controller extends CI_Controller
     protected function _access($allowedMethod)
     {
         if ($this->input->method() !== $allowedMethod) {
-            $this->_returnAjax(false, ["message" => "Access restricted due to wrong request method."]);
+            $this->_returnAjax(false, "Access restricted due to wrong request method.");
         }
     }
 }
