@@ -12,12 +12,22 @@ class MY_Controller extends CI_Controller
         $this->data = json_decode($this->data);
     }
 
+    /**
+     * Universal method to return JSON object in response
+     * 
+     * @param boolean
+     * @param mixed array | string
+     * @return string (json)
+     */
     protected function _returnAjax($success, $data = [])
     {
-        $return = [
-            "success"   =>  $success,
-            "data"      =>  $data
-        ];
+        $return["success"] = $success;
+        if ($success === false) {
+            // data should be string now
+            $return["error"] = ["message" => $data];
+        } else {
+            $return["data"] = $data;
+        }
         print json_encode($return);
         die();
     }
