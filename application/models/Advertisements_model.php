@@ -1,16 +1,17 @@
 <?php
 
-class Advertisements_model extends CI_Model {
+class Advertisements_model extends CI_Model
+{
 
-    function __construct() {
-
+    function __construct()
+    {
         // Call the Model constructor
         parent::__construct();
     }
 
     // Get all entries from advertisement
-    function getAdList() {
-
+    function getAdList()
+    {
         $sql = "SELECT * FROM advertisement ORDER BY enabled DESC";
         $query = $this->db->query($sql);
 
@@ -18,17 +19,18 @@ class Advertisements_model extends CI_Model {
     }
 
     // Insert advertisement
-    function add($title, $picture, $enabled) {
+    function add($title, $picture, $enabled)
+    {
 
         $sql = "INSERT INTO advertisement (title, picture, enabled)
         		VALUES (?, ?, ?)";
-
 
         return $this->db->query($sql, array($title, $picture, $enabled));
     }
 
     // Delete advertisement
-    function delete($id) {
+    function delete($id)
+    {
 
         $sql = "DELETE FROM advertisement
                 WHERE id = ?";
@@ -37,7 +39,8 @@ class Advertisements_model extends CI_Model {
     }
 
     // Enable advertisement
-    function enable($id, $enabled) {
+    function enable($id, $enabled)
+    {
 
         $sql = "UPDATE advertisement
                 SET enabled = ?
