@@ -3,8 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User extends MY_Controller
 {
-    public function login()
+    public function authenticate()
     {
+        $this->_access("post");
         $this->config->load("siteconfig");
 
         if ($this->data->username !== $this->config->item("admin_username") || $this->data->password !== $this->config->item("admin_password")) {
