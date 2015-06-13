@@ -14,4 +14,14 @@ class User extends MY_Controller
         }
         $this->_returnAjax(true);
     }
+
+    protected function _generateSID()
+    {
+        $characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $randString = "";
+        for ($i = 0; $i < 32; $i++) {
+            $randString .= $characters[rand(0, strlen($characters)-1)];
+        }
+        return $randString;
+    }
 }
