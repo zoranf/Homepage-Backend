@@ -46,4 +46,25 @@ class MY_Controller extends CI_Controller
             $this->_returnAjax(false, "Access restricted due to wrong request method.");
         }
     }
+
+    /**
+     * Check if client is authenticated
+     */
+    protected function _checkAuthentication()
+    {
+        $clientSID = $this->_getResponseSID();
+        $sessionID = $this->session->userdata("sid");
+        if (isset($sessionID) === true && $sessionID === $clientSID) {
+            return true;
+        }
+        $this->_returnAjax(false, "Please authenticate first.");
+    }
+
+    protected function _getResponseSID()
+    {
+        if ($this->input->method() === "get") {
+            return $this->input->get("sid");
+        }
+        return $this->data->sid;
+    }
 }

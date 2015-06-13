@@ -12,7 +12,9 @@ class User extends MY_Controller
 
             $this->_returnAjax(false);
         }
-        $this->_returnAjax(true);
+        $generatedSID = $this->_generateSID();
+        $this->session->set_userdata("sid", $generatedSID);
+        $this->_returnAjax(true, ["sid" => $generatedSID]);
     }
 
     protected function _generateSID()
