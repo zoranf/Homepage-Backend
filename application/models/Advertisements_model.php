@@ -19,13 +19,20 @@ class Advertisements_model extends CI_Model
     }
 
     // Insert advertisement
-    function add($title, $picture, $enabled)
+    function add($data)
     {
-
-        $sql = "INSERT INTO advertisements (title, picture, enabled)
+        $sql = "INSERT INTO advertisements (title, picture, time)
         		VALUES (?, ?, ?)";
-
-        return $this->db->query($sql, array($title, $picture, $enabled));
+        $insertArr = [
+            "title"     =>  $data["title"],
+            "picture"   =>  $data["picture"],
+            "time"      =>  time()
+        ];
+        $status = $this->db->query($sql, $insertArr);
+        if ($status === true) {
+            return $this->db->insert_id();
+        }
+        return false;
     }
 
     // Delete advertisement

@@ -17,15 +17,18 @@ class Advertisements extends MY_Controller
     {
         $this->_access("get");
         $data = $this->Advertisements_model->getAdList();
-        return $this->_returnAjax(true, $data);
+        $this->_returnAjax(true, $data);
     }
 
     // Add new advertisement
     public function post()
     {
         $this->_access("post");
-        $this->Advertisements_model->add($title, $picture, $enabled);
-        return $this->_returnAjax(true, array($title, $picture, $enabled));
+        $status = $this->Advertisements_model->add($this->input->post());
+        if (is_int($status) === true) {
+            $this->_returnAjax(true, ["id" => $status]);
+        }
+        $this->_returnAjax(false);
     }
 
     // Delete spcific advertisement
