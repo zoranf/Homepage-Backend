@@ -17,7 +17,6 @@ class Advertisements extends MY_Controller
     {
         $this->_access("get");
         $data = $this->Advertisements_model->getAdList();
-
         return $this->_returnAjax(true, $data);
     }
 
