@@ -21,11 +21,10 @@ class Advertisements extends MY_Controller
     }
 
     // Add new advertisement
-    public function post($title, $picture, $enabled)
+    public function post()
     {
         $this->_access("post");
         $this->Advertisements_model->add($title, $picture, $enabled);
-
         return $this->_returnAjax(true, array($title, $picture, $enabled));
     }
 

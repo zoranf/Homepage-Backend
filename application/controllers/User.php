@@ -8,9 +8,9 @@ class User extends MY_Controller
         $this->_access("post");
         $this->config->load("siteconfig");
 
-        if ($this->data->username !== $this->config->item("admin_username") || $this->data->password !== $this->config->item("admin_password")) {
+        if ($this->input->post("username") !== $this->config->item("admin_username") || $this->input->post("password") !== $this->config->item("admin_password")) {
 
-            $this->_returnAjax(false);
+            $this->_returnAjax(false, "False credentials.");
         }
         $generatedSID = $this->_generateSID();
         $this->session->set_userdata("sid", $generatedSID);
