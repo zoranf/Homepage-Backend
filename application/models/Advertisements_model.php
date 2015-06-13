@@ -12,7 +12,7 @@ class Advertisements_model extends CI_Model
     // Get all entries from advertisement
     function getAdList()
     {
-        $sql = "SELECT * FROM advertisement ORDER BY enabled DESC";
+        $sql = "SELECT * FROM advertisements ORDER BY enabled DESC";
         $query = $this->db->query($sql);
 
         return $query->result();
@@ -22,7 +22,7 @@ class Advertisements_model extends CI_Model
     function add($title, $picture, $enabled)
     {
 
-        $sql = "INSERT INTO advertisement (title, picture, enabled)
+        $sql = "INSERT INTO advertisements (title, picture, enabled)
         		VALUES (?, ?, ?)";
 
         return $this->db->query($sql, array($title, $picture, $enabled));
@@ -32,7 +32,7 @@ class Advertisements_model extends CI_Model
     function delete($id)
     {
 
-        $sql = "DELETE FROM advertisement
+        $sql = "DELETE FROM advertisements
                 WHERE id = ?";
 
         return $this->db->query($sql, $id);
@@ -42,7 +42,7 @@ class Advertisements_model extends CI_Model
     function enable($id, $enabled)
     {
 
-        $sql = "UPDATE advertisement
+        $sql = "UPDATE advertisements
                 SET enabled = ?
                 WHERE id = ?";
 

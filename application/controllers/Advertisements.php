@@ -15,14 +15,15 @@ class Advertisements extends MY_Controller
     // Returns list of advertisements
     public function get()
     {
+        $this->_access("get");
         $data = $this->Advertisements_model->getAdList();
-
         return $this->_returnAjax(true, $data);
     }
 
     // Add new advertisement
     public function post($title, $picture, $enabled)
     {
+        $this->_access("post");
         $this->Advertisements_model->add($title, $picture, $enabled);
 
         return $this->_returnAjax(true, array($title, $picture, $enabled));
@@ -31,6 +32,7 @@ class Advertisements extends MY_Controller
     // Delete spcific advertisement
     public function delete($id)
     {
+        $this->_access("delete");
         $this->Advertisements_model->delete($id);
 
         return $this->_returnAjax(true, $id);
@@ -39,6 +41,7 @@ class Advertisements extends MY_Controller
     // Enable / spcific ad
     public function enable($id)
     {
+        $this->_access("put");
         $this->Advertisements_model->enable($id, 1);
 
         return $this->_returnAjax(true, $id);
@@ -47,6 +50,7 @@ class Advertisements extends MY_Controller
     // Disable spcific ad
     public function disable($id)
     {
+        $this->_access("put");
         $this->Advertisements_model->enable($id, 0);
 
         return $this->_returnAjax(true, $id);
