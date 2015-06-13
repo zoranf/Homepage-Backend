@@ -7,7 +7,7 @@ class Advertisements extends MY_Controller
     function __construct()
     {
         parent::__construct();
-
+        $this->_checkAuthentication();
         // Load Advertisements_model
         $this->load->model("Advertisements_model");
     }
