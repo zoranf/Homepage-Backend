@@ -24,37 +24,41 @@ class Advertisements extends MY_Controller
     public function post()
     {
         $this->_access("post");
+
         $status = $this->Advertisements_model->add($this->input->post());
+
         if (is_int($status) === true) {
+
             $this->_returnAjax(true, ["id" => $status]);
         }
+
         $this->_returnAjax(false);
     }
 
-    // Delete spcific advertisement
-    public function delete($id)
+    // Delete selected advertisement
+    public function delete()
     {
         $this->_access("delete");
-        $this->Advertisements_model->delete($id);
+        $status = $this->Advertisements_model->delete($this->input->post());
 
-        return $this->_returnAjax(true, $id);
+        $this->_returnAjax(true);
     }
 
-    // Enable / spcific ad
-    public function enable($id)
+    // Enable / selected ad
+    public function enable()
     {
-        $this->_access("put");
-        $this->Advertisements_model->enable($id, 1);
+        $this->_access("post");
+        $satus = $this->Advertisements_model->enable($this->input->post());
 
-        return $this->_returnAjax(true, $id);
+        return $this->_returnAjax(true, $status);
     }
 
-    // Disable spcific ad
-    public function disable($id)
+    // Disable selected ad
+    public function disable()
     {
-        $this->_access("put");
-        $this->Advertisements_model->enable($id, 0);
+        $this->_access("post");
+        $status = $this->Advertisements_model->enable($this->input->post());
 
-        return $this->_returnAjax(true, $id);
+        return $this->_returnAjax(true, $status);
     }
 }
