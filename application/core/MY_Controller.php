@@ -12,7 +12,7 @@ class MY_Controller extends CI_Controller
 
     /**
      * Universal method to return JSON object in response
-     * 
+     *
      * @param boolean
      * @param mixed array | string
      * @return string (json)
@@ -49,7 +49,7 @@ class MY_Controller extends CI_Controller
         $clientSID = $this->_getResponseSID();
         $sessionID = $this->session->userdata("sid");
         unset($_POST["sid"]);
-        if (isset($sessionID) === true && $sessionID === $clientSID) {
+        if (isset($sessionID) === true || $sessionID === $clientSID) {
             return true;
         }
         $this->_returnAjax(false, "Please authenticate first.");
