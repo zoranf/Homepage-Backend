@@ -23,22 +23,26 @@ class Advertisements_model extends CI_Model
     {
         $sql = "INSERT INTO advertisements (title, picture, time)
         		VALUES (?, ?, ?)";
+
         $insertArr = [
             "title"     =>  $data["title"],
             "picture"   =>  $data["picture"],
             "time"      =>  time()
         ];
+
         $status = $this->db->query($sql, $insertArr);
+
         if ($status === true) {
+
             return $this->db->insert_id();
         }
+
         return false;
     }
 
     // Delete advertisement
     function delete($id)
     {
-
         $sql = "DELETE FROM advertisements
                 WHERE id = ?";
 
@@ -46,13 +50,20 @@ class Advertisements_model extends CI_Model
     }
 
     // Enable advertisement
-    function enable($id, $enabled)
+    function enable($data)
     {
 
         $sql = "UPDATE advertisements
                 SET enabled = ?
                 WHERE id = ?";
 
-        return $this->db->query($sql, array($enabled, $id));
+        $insertArr = [
+            "enabled"   => $data["enabled"],
+            "id"        => $data["id"]
+        ];
+
+        $this->db->query($sql, $insertArr);
+
+        return $data["id"];
     }
 }
