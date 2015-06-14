@@ -46,16 +46,16 @@ class MY_Controller extends CI_Controller
      */
     protected function _checkAuthentication()
     {
-        $clientSID = $this->_getResponseSID();
+        $requestSID = $this->_getRequestSID();
         $sessionID = $this->session->userdata("sid");
         unset($_POST["sid"]);
-        if (isset($sessionID) === true && $sessionID === $clientSID) {
+        if (isset($sessionID) === true && $sessionID === $requestSID) {
             return true;
         }
         $this->_returnAjax(false, "Please authenticate first.");
     }
 
-    protected function _getResponseSID()
+    protected function _getRequestSID()
     {
         if ($this->input->method() === "get") {
             return $this->input->get("sid");
