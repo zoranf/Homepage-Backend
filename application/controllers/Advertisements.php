@@ -52,13 +52,4 @@ class Advertisements extends MY_Controller
 
         return $this->_returnAjax(true, $status);
     }
-
-    // Disable selected ad
-    public function disable()
-    {
-        $this->_access("post");
-        $status = $this->Advertisements_model->enable($this->input->post());
-
-        return $this->_returnAjax(true, $status);
-    }
 }
