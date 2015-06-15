@@ -27,18 +27,20 @@ class Advertisements extends MY_Controller
 		$this->load->library('form_validation');
         $this->_access("post");
 
-        /*$rules = array(
-            "field" => "title",
-            "label" => "Title",
-            "rules" => "required|is_unique[advertisements.title]"
-        );*/
+        $rules = array(
+            array(
+                "field" => "title",
+                "label" => "Title",
+                "rules" => "required|is_unique[advertisements.title]"
+            )
+        );
 
-        $this->form_validation->set_rules("title", "Title");
-        $this->form_validation->set_rules("title", "Title", "required|is_unique[advertisements.title]");
+        $this->form_validation->set_rules($rules);
 
-        //$this->form_validation->set_rules($rules);
+        if (empty($this->input->post("title"))) {
 
-        if ($this->form_validation->run() !== false) {
+            $this->_returnAjax(false, "You must enter the title!");
+        } else if ($this->form_validation->run() !== false) {
 
             $status = $this->Advertisements_model->add($this->input->post());
 
@@ -48,7 +50,7 @@ class Advertisements extends MY_Controller
             }
         }
 
-        $this->_returnAjax(false, "Already exists.");
+        $this->_returnAjax(false, "Change the title.");
     }
 
     // Delete selected advertisement
