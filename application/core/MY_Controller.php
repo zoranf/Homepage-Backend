@@ -12,7 +12,7 @@ class MY_Controller extends CI_Controller
 
     /**
      * Universal method to return JSON object in response
-     * 
+     *
      * @param boolean
      * @param mixed array | string
      * @return string (json)
