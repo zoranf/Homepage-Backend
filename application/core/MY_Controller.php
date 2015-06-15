@@ -47,18 +47,8 @@ class MY_Controller extends CI_Controller
     protected function _checkAuthentication()
     {
         $loggedIn = $this->session->userdata("loggedIn");
-        unset($_POST["sid"]);
-        if (isset($loggedIn) === true && $loggedIn === true) {
-            return true;
+        if (isset($loggedIn) === false) {
+            $this->_returnAjax(false, "Please authenticate first.");
         }
-        $this->_returnAjax(false, "Please authenticate first.");
-    }
-
-    protected function _getRequestSID()
-    {
-        if ($this->input->method() === "get") {
-            return $this->input->get("sid");
-        }
-        return $this->input->post("sid");
     }
 }
