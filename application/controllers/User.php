@@ -12,18 +12,7 @@ class User extends MY_Controller
 
             $this->_returnAjax(false, "False credentials.");
         }
-        $generatedSID = $this->_generateSID();
-        $this->session->set_userdata("sid", $generatedSID);
-        $this->_returnAjax(true, ["sid" => $generatedSID]);
-    }
-
-    protected function _generateSID()
-    {
-        $characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        $randString = "";
-        for ($i = 0; $i < 32; $i++) {
-            $randString .= $characters[rand(0, strlen($characters)-1)];
-        }
-        return $randString;
+        $this->session->set_userdata("loggedIn", true);
+        $this->_returnAjax(true);
     }
 }
