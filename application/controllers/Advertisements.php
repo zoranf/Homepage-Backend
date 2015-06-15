@@ -23,16 +23,32 @@ class Advertisements extends MY_Controller
     // Add new advertisement
     public function post()
     {
+        $this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
         $this->_access("post");
 
-        $status = $this->Advertisements_model->add($this->input->post());
+        /*$rules = array(
+            "field" => "title",
+            "label" => "Title",
+            "rules" => "required|is_unique[advertisements.title]"
+        );*/
 
-        if (is_int($status) === true) {
+        $this->form_validation->set_rules("title", "Title");
+        $this->form_validation->set_rules("title", "Title", "required|is_unique[advertisements.title]");
 
-            $this->_returnAjax(true, ["id" => $status]);
+        //$this->form_validation->set_rules($rules);
+
+        if ($this->form_validation->run() !== false) {
+
+            $status = $this->Advertisements_model->add($this->input->post());
+
+            if (is_int($status) === true) {
+
+                $this->_returnAjax(true, ["id" => $status]);
+            }
         }
 
-        $this->_returnAjax(false);
+        $this->_returnAjax(false, "Already exists.");
     }
 
     // Delete selected advertisement
