@@ -65,7 +65,7 @@ class Advertisements extends MY_Controller
     // Enable / selected ad
     public function enable()
     {
-        $this->_access("post");
+        $this->_access("put");
         $status = $this->Advertisements_model->enable($this->input->post());
 
         return $this->_returnAjax(true, $status);
