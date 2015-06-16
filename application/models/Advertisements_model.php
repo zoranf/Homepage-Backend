@@ -52,7 +52,6 @@ class Advertisements_model extends CI_Model
     // Enable advertisement
     function enable($data)
     {
-
         $sql = "UPDATE advertisements
                 SET enabled = ?
                 WHERE id = ?";
