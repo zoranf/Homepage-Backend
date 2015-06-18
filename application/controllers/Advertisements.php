@@ -20,6 +20,14 @@ class Advertisements extends MY_Controller
         $this->_returnAjax(true, $data);
     }
 
+    // Returns list of advertisements
+    public function getAll()
+    {
+        $this->_access("get");
+        $data = $this->Advertisements_model->getFullList();
+        $this->_returnAjax(true, $data);
+    }
+
     // Add new advertisement
     public function post()
     {

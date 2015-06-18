@@ -9,10 +9,19 @@ class Advertisements_model extends CI_Model
         parent::__construct();
     }
 
-    // Get all entries from advertisement
+    // Get enabled advertisements
     function getAdList()
     {
         $sql = "SELECT * FROM advertisements WHERE enabled = 1";
+        $query = $this->db->query($sql);
+
+        return $query->result();
+    }
+
+    // Get all advertisement including disabled ones
+    function getFullList()
+    {
+        $sql = "SELECT * FROM advertisements ORDER BY enabled DESC";
         $query = $this->db->query($sql);
 
         return $query->result();
