@@ -24,7 +24,7 @@ class Advertisements extends MY_Controller
     public function post()
     {
         $this->load->helper(array('form', 'url'));
-		$this->load->library('form_validation');
+        $this->load->library('form_validation');
         $this->_access("post");
 
         $rules = array(
@@ -51,6 +51,36 @@ class Advertisements extends MY_Controller
         }
 
         $this->_returnAjax(false, "Change the title.");
+    }
+
+    // Update advertisement
+    public function edit()
+    {
+        $this->_access("post");
+        $this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
+
+        $rules = array(
+            array(
+                "field" => "id",
+                "label" => "ID",
+                "rules" => "required|numeric"
+            ),
+        );
+
+        $this->form_validation->set_rules($rules);
+
+        if (empty($this->input->post("id"))) {
+
+            $this->_returnAjax(false, "ID field is required!");
+        } else if ($this->form_validation->run() !== false) {
+
+            $status = $this->Advertisements_model->update($this->input->post());
+
+            $this->_returnAjax($status);
+        }
+
+        $this->_returnAjax(false, "Form validation failed.");
     }
 
     // Delete selected advertisement

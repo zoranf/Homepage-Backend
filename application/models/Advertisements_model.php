@@ -22,7 +22,7 @@ class Advertisements_model extends CI_Model
     function add($data)
     {
         $sql = "INSERT INTO advertisements (title, picture, time)
-        		VALUES (?, ?, ?)";
+                VALUES (?, ?, ?)";
 
         $insertArr = [
             "title"     =>  $data["title"],
@@ -38,6 +38,14 @@ class Advertisements_model extends CI_Model
         }
 
         return false;
+    }
+
+    // Update advertisement
+    function update($data)
+    {
+        $this->db->where('id', $data["id"]);
+        unset($data["id"]);
+        return $this->db->update('advertisements', $data);
     }
 
     // Delete advertisement
