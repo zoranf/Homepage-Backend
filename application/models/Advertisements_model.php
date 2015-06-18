@@ -12,7 +12,7 @@ class Advertisements_model extends CI_Model
     // Get all entries from advertisement
     function getAdList()
     {
-        $sql = "SELECT * FROM advertisements ORDER BY enabled DESC";
+        $sql = "SELECT * FROM advertisements WHERE enabled = 1";
         $query = $this->db->query($sql);
 
         return $query->result();
