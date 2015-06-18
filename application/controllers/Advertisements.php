@@ -57,7 +57,7 @@ class Advertisements extends MY_Controller
     public function delete()
     {
         $this->_access("delete");
-        $status = $this->Advertisements_model->delete($this->input->post());
+        $status = $this->Advertisements_model->delete($this->input->post("id"));
 
         $this->_returnAjax(true);
     }
