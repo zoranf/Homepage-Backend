@@ -2,6 +2,14 @@
 
 class Advertisements_model extends CI_Model
 {
+    /**
+     * Flag for not getting full list of ads
+     */
+    const NOT_FULL_LIST = false;
+    /**
+     * Flag for getting full list of ads
+     */
+    const FULL_LIST = true;
 
     function __construct()
     {
@@ -10,18 +18,13 @@ class Advertisements_model extends CI_Model
     }
 
     // Get enabled advertisements
-    function getAdList()
+    function getAdList($full = self::NOT_FULL_LIST)
     {
-        $sql = "SELECT * FROM advertisements WHERE enabled = 1";
-        $query = $this->db->query($sql);
-
-        return $query->result();
-    }
-
-    // Get all advertisement including disabled ones
-    function getFullList()
-    {
-        $sql = "SELECT * FROM advertisements ORDER BY enabled DESC";
+        $sql = "SELECT * FROM advertisements";
+        if ($full === self::NOT_FULL_LIST) {
+            $sql .= " WHERE enabled = 1";
+        }
+        $sql .= " ORDER BY enabled DESC";
         $query = $this->db->query($sql);
 
         return $query->result();
