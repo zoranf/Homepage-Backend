@@ -68,6 +68,6 @@ class Advertisements extends MY_Controller
         $this->_access("put");
         $status = $this->Advertisements_model->enable($this->input->post());
 
-        return $this->_returnAjax(true, $status);
+        $this->_returnAjax($status);
     }
 }

@@ -61,8 +61,6 @@ class Advertisements_model extends CI_Model
             "id"        => $data["id"]
         ];
 
-        $this->db->query($sql, $insertArr);
-
-        return $data["id"];
+        return $this->db->query($sql, $insertArr);
     }
 }
