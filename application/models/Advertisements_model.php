@@ -9,8 +9,17 @@ class Advertisements_model extends CI_Model
         parent::__construct();
     }
 
-    // Get all entries from advertisement
+    // Get enabled advertisements
     function getAdList()
+    {
+        $sql = "SELECT * FROM advertisements WHERE enabled = 1";
+        $query = $this->db->query($sql);
+
+        return $query->result();
+    }
+
+    // Get all advertisement including disabled ones
+    function getFullList()
     {
         $sql = "SELECT * FROM advertisements ORDER BY enabled DESC";
         $query = $this->db->query($sql);
@@ -19,19 +28,38 @@ class Advertisements_model extends CI_Model
     }
 
     // Insert advertisement
-    function add($title, $picture, $enabled)
+    function add($data)
     {
+        $sql = "INSERT INTO advertisements (title, picture, time)
+                VALUES (?, ?, ?)";
 
-        $sql = "INSERT INTO advertisements (title, picture, enabled)
-        		VALUES (?, ?, ?)";
+        $insertArr = [
+            "title"     =>  $data["title"],
+            "picture"   =>  $data["picture"],
+            "time"      =>  time()
+        ];
 
-        return $this->db->query($sql, array($title, $picture, $enabled));
+        $status = $this->db->query($sql, $insertArr);
+
+        if ($status === true) {
+
+            return $this->db->insert_id();
+        }
+
+        return false;
+    }
+
+    // Update advertisement
+    function update($data)
+    {
+        $this->db->where('id', $data["id"]);
+        unset($data["id"]);
+        return $this->db->update('advertisements', $data);
     }
 
     // Delete advertisement
     function delete($id)
     {
-
         $sql = "DELETE FROM advertisements
                 WHERE id = ?";
 
@@ -39,13 +67,17 @@ class Advertisements_model extends CI_Model
     }
 
     // Enable advertisement
-    function enable($id, $enabled)
+    function enable($data)
     {
-
         $sql = "UPDATE advertisements
                 SET enabled = ?
                 WHERE id = ?";
 
-        return $this->db->query($sql, array($enabled, $id));
+        $insertArr = [
+            "enabled"   => $data["enabled"],
+            "id"        => $data["id"]
+        ];
+
+        return $this->db->query($sql, $insertArr);
     }
 }

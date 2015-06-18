@@ -3,22 +3,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MY_Controller extends CI_Controller
 {
-    /**
-     * Property which takes whole request sent from the client
-     */
-    public $data = [];
-
     public function __construct()
     {
         parent::__construct();
         // save whole request to data property
-        $this->data = file_get_contents('php://input');
-        $this->data = json_decode($this->data);
+        $_POST = (array)json_decode(file_get_contents('php://input'));
     }
 
     /**
      * Universal method to return JSON object in response
-     * 
+     *
      * @param boolean
      * @param mixed array | string
      * @return string (json)
@@ -52,19 +46,9 @@ class MY_Controller extends CI_Controller
      */
     protected function _checkAuthentication()
     {
-        $clientSID = $this->_getResponseSID();
-        $sessionID = $this->session->userdata("sid");
-        if (isset($sessionID) === true && $sessionID === $clientSID) {
-            return true;
+        $loggedIn = $this->session->userdata("loggedIn");
+        if (isset($loggedIn) === false) {
+            $this->_returnAjax(false, "Please authenticate first.");
         }
-        $this->_returnAjax(false, "Please authenticate first.");
-    }
-
-    protected function _getResponseSID()
-    {
-        if ($this->input->method() === "get") {
-            return $this->input->get("sid");
-        }
-        return $this->data->sid;
     }
 }

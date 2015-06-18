@@ -17,42 +17,95 @@ class Advertisements extends MY_Controller
     {
         $this->_access("get");
         $data = $this->Advertisements_model->getAdList();
-        return $this->_returnAjax(true, $data);
+        $this->_returnAjax(true, $data);
+    }
+
+    // Returns list of advertisements
+    public function getAll()
+    {
+        $this->_access("get");
+        $data = $this->Advertisements_model->getFullList();
+        $this->_returnAjax(true, $data);
     }
 
     // Add new advertisement
-    public function post($title, $picture, $enabled)
+    public function post()
+    {
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+        $this->_access("post");
+
+        $rules = array(
+            array(
+                "field" => "title",
+                "label" => "Title",
+                "rules" => "required|is_unique[advertisements.title]"
+            )
+        );
+
+        $this->form_validation->set_rules($rules);
+
+        if (empty($this->input->post("title"))) {
+
+            $this->_returnAjax(false, "You must enter the title!");
+        } else if ($this->form_validation->run() !== false) {
+
+            $status = $this->Advertisements_model->add($this->input->post());
+
+            if (is_int($status) === true) {
+
+                $this->_returnAjax(true, ["id" => $status]);
+            }
+        }
+
+        $this->_returnAjax(false, "Change the title.");
+    }
+
+    // Update advertisement
+    public function edit()
     {
         $this->_access("post");
-        $this->Advertisements_model->add($title, $picture, $enabled);
+        $this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
 
-        return $this->_returnAjax(true, array($title, $picture, $enabled));
+        $rules = array(
+            array(
+                "field" => "id",
+                "label" => "ID",
+                "rules" => "required|numeric"
+            ),
+        );
+
+        $this->form_validation->set_rules($rules);
+
+        if (empty($this->input->post("id"))) {
+
+            $this->_returnAjax(false, "ID field is required!");
+        } else if ($this->form_validation->run() !== false) {
+
+            $status = $this->Advertisements_model->update($this->input->post());
+
+            $this->_returnAjax($status);
+        }
+
+        $this->_returnAjax(false, "Form validation failed.");
     }
 
-    // Delete spcific advertisement
-    public function delete($id)
+    // Delete selected advertisement
+    public function delete()
     {
         $this->_access("delete");
-        $this->Advertisements_model->delete($id);
+        $status = $this->Advertisements_model->delete($this->input->post("id"));
 
-        return $this->_returnAjax(true, $id);
+        $this->_returnAjax(true);
     }
 
-    // Enable / spcific ad
-    public function enable($id)
+    // Enable / selected ad
+    public function enable()
     {
         $this->_access("put");
-        $this->Advertisements_model->enable($id, 1);
+        $status = $this->Advertisements_model->enable($this->input->post());
 
-        return $this->_returnAjax(true, $id);
-    }
-
-    // Disable spcific ad
-    public function disable($id)
-    {
-        $this->_access("put");
-        $this->Advertisements_model->enable($id, 0);
-
-        return $this->_returnAjax(true, $id);
+        $this->_returnAjax($status);
     }
 }
