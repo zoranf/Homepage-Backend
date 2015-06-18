@@ -1,9 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * Services for admin control purposes
+ */
 class Advertisements extends MY_Controller
 {
-
     function __construct()
     {
         parent::__construct();
@@ -16,7 +18,7 @@ class Advertisements extends MY_Controller
     public function get()
     {
         $this->_access("get");
-        $data = $this->Advertisements_model->getAdList();
+        $data = $this->Advertisements_model->getAdList(Advertisements_model::FULL_LIST);
         $this->_returnAjax(true, $data);
     }
 
