@@ -10,8 +10,9 @@ class Advertisements extends MY_Controller
     {
         parent::__construct();
         $this->_checkAuthentication();
-        // Load Advertisements_model
         $this->load->model("Advertisements_model");
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
     }
 
     // Returns list of advertisements
@@ -25,8 +26,6 @@ class Advertisements extends MY_Controller
     // Add new advertisement
     public function post()
     {
-        $this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
         $this->_access("post");
 
         $rules = array(
