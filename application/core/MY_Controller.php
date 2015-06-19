@@ -7,7 +7,10 @@ class MY_Controller extends CI_Controller
     {
         parent::__construct();
         // save whole request to data property
-        $_POST = (array)json_decode(file_get_contents('php://input'));
+        $request = (array)json_decode(file_get_contents('php://input'));
+        if (count($request) > 0) {
+            $_POST = $request;
+        }
     }
 
     /**
