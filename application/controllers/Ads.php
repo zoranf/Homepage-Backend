@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Services for admin control purposes
+ * Services for user control purposes
  */
 class Ads extends MY_Controller
 {
