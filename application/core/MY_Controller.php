@@ -30,7 +30,7 @@ class MY_Controller extends CI_Controller
             $return["data"] = $data;
         }
         print json_encode($return);
-        die();
+        exit();
     }
 
     /**
