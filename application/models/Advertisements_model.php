@@ -2,40 +2,85 @@
 
 class Advertisements_model extends CI_Model
 {
-
-    var $title   = '';
-    var $content = '';
-    var $date    = '';
+    /**
+     * Flag for not getting full list of ads
+     */
+    const NOT_FULL_LIST = false;
+    /**
+     * Flag for getting full list of ads
+     */
+    const FULL_LIST = true;
 
     function __construct()
     {
         // Call the Model constructor
         parent::__construct();
     }
-    
-    function get_last_ten_entries()
+
+    // Get enabled advertisements
+    function getAdList($full = self::NOT_FULL_LIST)
     {
-        return ["asd" => 123];
-        $query = $this->db->get('entries', 10);
+        $sql = "SELECT * FROM advertisements";
+        if ($full === self::NOT_FULL_LIST) {
+            $sql .= " WHERE enabled = 1";
+        }
+        $sql .= " ORDER BY enabled DESC";
+        $query = $this->db->query($sql);
+
         return $query->result();
     }
 
-    function insert_entry()
+    // Insert advertisement
+    function add($data)
     {
-        $this->title   = $_POST['title']; // please read the below note
-        $this->content = $_POST['content'];
-        $this->date    = time();
+        $sql = "INSERT INTO advertisements (title, picture, time)
+                VALUES (?, ?, ?)";
 
-        $this->db->insert('entries', $this);
+        $insertArr = [
+            "title"     =>  $data["title"],
+            "picture"   =>  $data["picture"],
+            "time"      =>  time()
+        ];
+
+        $status = $this->db->query($sql, $insertArr);
+
+        if ($status === true) {
+
+            return $this->db->insert_id();
+        }
+
+        return false;
     }
 
-    function update_entry()
+    // Update advertisement
+    function update($data)
     {
-        $this->title   = $_POST['title'];
-        $this->content = $_POST['content'];
-        $this->date    = time();
-
-        $this->db->update('entries', $this, array('id' => $_POST['id']));
+        $this->db->where('id', $data["id"]);
+        unset($data["id"]);
+        return $this->db->update('advertisements', $data);
     }
 
+    // Delete advertisement
+    function delete($id)
+    {
+        $sql = "DELETE FROM advertisements
+                WHERE id = ?";
+
+        return $this->db->query($sql, $id);
+    }
+
+    // Enable advertisement
+    function enable($data)
+    {
+        $sql = "UPDATE advertisements
+                SET enabled = ?
+                WHERE id = ?";
+
+        $insertArr = [
+            "enabled"   => $data["enabled"],
+            "id"        => $data["id"]
+        ];
+
+        return $this->db->query($sql, $insertArr);
+    }
 }
