@@ -23,10 +23,18 @@ class Advertisements extends MY_Controller
         $this->_returnAjax(true, $data);
     }
 
+    protected function _checkFileInRequest()
+    {
+        if (empty($_FILES["picture"]["name"]) === true) {
+            $this->_returnAjax(false, "Picture is required.");
+        }
+    }
+
     // Add new advertisement
     public function post()
     {
         $this->_access("post");
+        $this->_checkFileInRequest();
 
         $rules = array(
             array(
