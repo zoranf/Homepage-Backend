@@ -36,6 +36,20 @@ class Advertisements extends MY_Controller
         $this->_access("post");
         $this->_checkFileInRequest();
 
+        $data = $this->input->post();
+
+        // upload file configuration
+        $config['upload_path']          = "./upload/";
+        $config['allowed_types']        = "gif|jpg|png|jpeg";
+        $config['file_name']            = $data["title"];
+        $config['overwrite']            = false;
+        $config['max_size']             = 100000;
+        $config['max_width']            = 10240;
+        $config['max_height']           = 7680;
+        $config['file_ext_tolower']     = true;
+
+        $this->load->library('upload', $config);
+
         $rules = array(
             array(
                 "field" => "title",
@@ -46,17 +60,26 @@ class Advertisements extends MY_Controller
 
         $this->form_validation->set_rules($rules);
 
-        if (empty($this->input->post("title"))) {
+        if (empty($data["title"])) {
 
             $this->_returnAjax(false, "You must enter the title!");
         } else if ($this->form_validation->run() !== false) {
 
-            $status = $this->Advertisements_model->add($this->input->post());
+            if ($this->upload->do_upload("picture") === true) {
 
-            if (is_int($status) === true) {
+                $uploadData = $this->upload->data();
+                $data["picture"] = $uploadData["file_name"];
+                $status = $this->Advertisements_model->add($data);
+                if (is_int($status) === true) {
 
-                $this->_returnAjax(true, ["id" => $status]);
+                    $this->_returnAjax(true, ["id" => $status]);
+                }
+
+            } else {
+                $error = array('error' => $this->upload->display_errors());
+                $this->_returnAjax(false, "Uploading file failed.");
             }
+
         }
 
         $this->_returnAjax(false, "Change the title.");
