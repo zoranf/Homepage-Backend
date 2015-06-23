@@ -125,7 +125,10 @@ class Advertisements extends MY_Controller
                     $data["picture"] = $newImgData["file_name"];
                     // get data for actual image and remove it
                     $actualAd = $this->Advertisements_model->getAd($data["id"]);
-                    unlink(FCPATH . "upload/{$actualAd->picture}");
+                    $actualImgPath = FCPATH . "upload/{$actualAd->picture}";
+                    if (file_exists($actualImgPath) === true) {
+                        unlink($actualImgPath);
+                    }
                 } else {
                     $error = array('error' => $this->upload->display_errors());
                     $this->_returnAjax(false, "Uploading file failed.");
