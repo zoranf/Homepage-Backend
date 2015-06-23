@@ -120,8 +120,8 @@ class Advertisements extends MY_Controller
         } else if ($this->form_validation->run() === true) {
             if ($fileInRequest === true) {
                 if ($this->upload->do_upload("picture") === true) {
-                    $uploadData = $this->upload->data();
-                    $data["picture"] = $uploadData["file_name"];
+                    $newImgData = $this->upload->data();
+                    $data["picture"] = $newImgData["file_name"];
                 } else {
                     $error = array('error' => $this->upload->display_errors());
                     $this->_returnAjax(false, "Uploading file failed.");
