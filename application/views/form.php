@@ -11,10 +11,11 @@
             e.preventDefault();
             var data = new FormData($("#formId")[0]);
 
-            /*append some data to request
-            data.append("opt1",'value1');*/
+            // append some data to request
+            // data.append("id", 9);
 
             $.ajax({
+                // url: "http://eko.dev:8080/Advertisements/edit",
                 url: "http://eko.dev:8080/Advertisements/post",
                 data: data,//new FormData($("#formId")[0]),
                 processData: false,

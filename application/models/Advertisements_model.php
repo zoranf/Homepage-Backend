@@ -57,6 +57,7 @@ class Advertisements_model extends CI_Model
     {
         $this->db->where('id', $data["id"]);
         unset($data["id"]);
+        unset($data["submit"]);
         return $this->db->update('advertisements', $data);
     }
 

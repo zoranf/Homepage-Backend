@@ -67,8 +67,8 @@ class Advertisements extends MY_Controller
                 $uploadData = $this->upload->data();
                 $data["picture"] = $uploadData["file_name"];
                 $status = $this->Advertisements_model->add($data);
-                if (is_int($status) === true) {
 
+                if (is_int($status) === true) {
                     $this->_returnAjax(true, ["id" => $status]);
                 }
 
@@ -90,11 +90,23 @@ class Advertisements extends MY_Controller
 
         $data = $this->input->post();
 
+        // upload file configuration
+        $config['upload_path']          = "./upload/";
+        $config['allowed_types']        = "gif|jpg|png|jpeg";
+        $config['file_name']            = $data["title"];
+        $config['overwrite']            = false;
+        $config['max_size']             = 100000;
+        $config['max_width']            = 10240;
+        $config['max_height']           = 7680;
+        $config['file_ext_tolower']     = true;
+
+        $this->load->library('upload', $config);
+
         $rules = array(
             array(
                 "field" => "id",
                 "label" => "ID",
-                "rules" => "required|numeric"
+                "rules" => "required"
             )
         );
 
@@ -105,8 +117,17 @@ class Advertisements extends MY_Controller
             $this->_returnAjax(false, "ID field is required!");
         } else if ($this->form_validation->run() === true) {
 
-            $status = $this->Advertisements_model->update($data);
-            $this->_returnAjax($status);
+            if ($this->upload->do_upload("picture") === true) {
+
+                $uploadData = $this->upload->data();
+                $data["picture"] = $uploadData["file_name"];
+                $status = $this->Advertisements_model->update($data);
+
+                $this->_returnAjax($status);
+            } else {
+                $error = array('error' => $this->upload->display_errors());
+                $this->_returnAjax(false, "Uploading file failed.");
+            }
         }
 
         $this->_returnAjax(false, "Form validation failed.");
