@@ -23,18 +23,15 @@ class Advertisements extends MY_Controller
         $this->_returnAjax(true, $data);
     }
 
-    protected function _checkFileInRequest()
-    {
-        if (empty($_FILES["picture"]["name"]) === true) {
-            $this->_returnAjax(false, "Picture is required.");
-        }
-    }
-
     // Add new advertisement
     public function post()
     {
         $this->_access("post");
-        $this->_checkFileInRequest();
+
+        // error if picture is not sent
+        if ($this->_fileInRequest() === false) {
+            $this->_returnAjax(false, "Picture is required.");
+        }
 
         $data = $this->input->post();
 
@@ -60,10 +57,10 @@ class Advertisements extends MY_Controller
 
         $this->form_validation->set_rules($rules);
 
-        if (empty($data["title"])) {
+        if (empty($data["title"]) === true) {
 
             $this->_returnAjax(false, "You must enter the title!");
-        } else if ($this->form_validation->run() !== false) {
+        } else if ($this->form_validation->run() === true) {
 
             if ($this->upload->do_upload("picture") === true) {
 
@@ -89,26 +86,26 @@ class Advertisements extends MY_Controller
     public function edit()
     {
         $this->_access("post");
-        $this->load->helper(array('form', 'url'));
-		$this->load->library('form_validation');
+        $this->load->library('form_validation');
+
+        $data = $this->input->post();
 
         $rules = array(
             array(
                 "field" => "id",
                 "label" => "ID",
                 "rules" => "required|numeric"
-            ),
+            )
         );
 
         $this->form_validation->set_rules($rules);
 
-        if (empty($this->input->post("id"))) {
+        if (empty($data["id"]) === true) {
 
             $this->_returnAjax(false, "ID field is required!");
-        } else if ($this->form_validation->run() !== false) {
+        } else if ($this->form_validation->run() === true) {
 
-            $status = $this->Advertisements_model->update($this->input->post());
-
+            $status = $this->Advertisements_model->update($data);
             $this->_returnAjax($status);
         }
 
@@ -131,5 +128,13 @@ class Advertisements extends MY_Controller
         $status = $this->Advertisements_model->enable($this->input->post());
 
         $this->_returnAjax($status);
+    }
+
+    protected function _fileInRequest()
+    {
+        if (empty($_FILES["picture"]["name"]) === true) {
+            return false;
+        }
+        return true;
     }
 }
