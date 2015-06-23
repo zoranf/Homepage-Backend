@@ -30,6 +30,14 @@ class Advertisements_model extends CI_Model
         return $query->result();
     }
 
+    public function getAd($id)
+    {
+        $sql = "SELECT * FROM advertisements WHERE id = {$id}";
+        $query = $this->db->query($sql);
+
+        return $query->result()[0];
+    }
+
     // Insert advertisement
     public function add($data)
     {

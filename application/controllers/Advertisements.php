@@ -120,8 +120,12 @@ class Advertisements extends MY_Controller
         } else if ($this->form_validation->run() === true) {
             if ($fileInRequest === true) {
                 if ($this->upload->do_upload("picture") === true) {
+                    // get data for uploaded image
                     $newImgData = $this->upload->data();
                     $data["picture"] = $newImgData["file_name"];
+                    // get data for actual image and remove it
+                    $actualAd = $this->Advertisements_model->getAd($data["id"]);
+                    unlink(FCPATH . "upload/{$actualAd->picture}");
                 } else {
                     $error = array('error' => $this->upload->display_errors());
                     $this->_returnAjax(false, "Uploading file failed.");
