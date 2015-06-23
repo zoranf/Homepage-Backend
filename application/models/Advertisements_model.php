@@ -11,14 +11,14 @@ class Advertisements_model extends CI_Model
      */
     const FULL_LIST = true;
 
-    function __construct()
+    public function __construct()
     {
         // Call the Model constructor
         parent::__construct();
     }
 
     // Get enabled advertisements
-    function getAdList($full = self::NOT_FULL_LIST)
+    public function getAdList($full = self::NOT_FULL_LIST)
     {
         $sql = "SELECT * FROM advertisements";
         if ($full === self::NOT_FULL_LIST) {
@@ -31,7 +31,7 @@ class Advertisements_model extends CI_Model
     }
 
     // Insert advertisement
-    function add($data)
+    public function add($data)
     {
         $sql = "INSERT INTO advertisements (title, picture, time)
                 VALUES (?, ?, ?)";
@@ -53,7 +53,7 @@ class Advertisements_model extends CI_Model
     }
 
     // Update advertisement
-    function update($data)
+    public function update($data)
     {
         $this->db->where('id', $data["id"]);
         unset($data["id"]);
@@ -62,7 +62,7 @@ class Advertisements_model extends CI_Model
     }
 
     // Delete advertisement
-    function delete($id)
+    public function delete($id)
     {
         $sql = "DELETE FROM advertisements
                 WHERE id = ?";
@@ -71,7 +71,7 @@ class Advertisements_model extends CI_Model
     }
 
     // Enable advertisement
-    function enable($data)
+    public function enable($data)
     {
         $sql = "UPDATE advertisements
                 SET enabled = ?
