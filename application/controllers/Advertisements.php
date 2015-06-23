@@ -116,14 +116,10 @@ class Advertisements extends MY_Controller
         $this->form_validation->set_rules($rules);
 
         if (empty($data["id"]) === true) {
-
             $this->_returnAjax(false, "ID field is required!");
         } else if ($this->form_validation->run() === true) {
-
             if ($fileInRequest === true) {
-                $fileUploaded = $this->upload->do_upload("picture");
-                if ($fileUploaded === true) {
-
+                if ($this->upload->do_upload("picture") === true) {
                     $uploadData = $this->upload->data();
                     $data["picture"] = $uploadData["file_name"];
                 } else {
