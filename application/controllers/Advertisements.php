@@ -90,17 +90,20 @@ class Advertisements extends MY_Controller
 
         $data = $this->input->post();
 
-        // upload file configuration
-        $config['upload_path']          = "./upload/";
-        $config['allowed_types']        = "gif|jpg|png|jpeg";
-        $config['file_name']            = $data["title"];
-        $config['overwrite']            = false;
-        $config['max_size']             = 100000;
-        $config['max_width']            = 10240;
-        $config['max_height']           = 7680;
-        $config['file_ext_tolower']     = true;
+        $fileInRequest = $this->_fileInRequest();
+        if ($fileInRequest === true) {
+            // upload file configuration
+            $config['upload_path']          = "./upload/";
+            $config['allowed_types']        = "gif|jpg|png|jpeg";
+            $config['file_name']            = $data["title"];
+            $config['overwrite']            = false;
+            $config['max_size']             = 100000;
+            $config['max_width']            = 10240;
+            $config['max_height']           = 7680;
+            $config['file_ext_tolower']     = true;
 
-        $this->load->library('upload', $config);
+            $this->load->library('upload', $config);
+        }
 
         $rules = array(
             array(
@@ -117,17 +120,20 @@ class Advertisements extends MY_Controller
             $this->_returnAjax(false, "ID field is required!");
         } else if ($this->form_validation->run() === true) {
 
-            if ($this->upload->do_upload("picture") === true) {
+            if ($fileInRequest === true) {
+                $fileUploaded = $this->upload->do_upload("picture");
+                if ($fileUploaded === true) {
 
-                $uploadData = $this->upload->data();
-                $data["picture"] = $uploadData["file_name"];
-                $status = $this->Advertisements_model->update($data);
-
-                $this->_returnAjax($status);
-            } else {
-                $error = array('error' => $this->upload->display_errors());
-                $this->_returnAjax(false, "Uploading file failed.");
+                    $uploadData = $this->upload->data();
+                    $data["picture"] = $uploadData["file_name"];
+                } else {
+                    $error = array('error' => $this->upload->display_errors());
+                    $this->_returnAjax(false, "Uploading file failed.");
+                }
             }
+
+            $status = $this->Advertisements_model->update($data);
+            $this->_returnAjax($status);
         }
 
         $this->_returnAjax(false, "Form validation failed.");
