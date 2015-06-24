@@ -28,6 +28,25 @@ class Advertisements extends MY_Controller
     {
         $this->_access("post");
 
+        // error if picture is not sent
+        if ($this->_fileInRequest() === false) {
+            $this->_returnAjax(false, "Picture is required.");
+        }
+
+        $data = $this->input->post();
+
+        // upload file configuration
+        $config['upload_path']          = "./upload/";
+        $config['allowed_types']        = "gif|jpg|png|jpeg";
+        $config['file_name']            = $data["title"];
+        $config['overwrite']            = false;
+        $config['max_size']             = 100000;
+        $config['max_width']            = 10240;
+        $config['max_height']           = 7680;
+        $config['file_ext_tolower']     = true;
+
+        $this->load->library('upload', $config);
+
         $rules = array(
             array(
                 "field" => "title",
@@ -38,17 +57,26 @@ class Advertisements extends MY_Controller
 
         $this->form_validation->set_rules($rules);
 
-        if (empty($this->input->post("title"))) {
+        if (empty($data["title"]) === true) {
 
             $this->_returnAjax(false, "You must enter the title!");
-        } else if ($this->form_validation->run() !== false) {
+        } else if ($this->form_validation->run() === true) {
 
-            $status = $this->Advertisements_model->add($this->input->post());
+            if ($this->upload->do_upload("picture") === true) {
 
-            if (is_int($status) === true) {
+                $uploadData = $this->upload->data();
+                $data["picture"] = $uploadData["file_name"];
+                $status = $this->Advertisements_model->add($data);
 
-                $this->_returnAjax(true, ["id" => $status]);
+                if (is_int($status) === true) {
+                    $this->_returnAjax(true, ["id" => $status]);
+                }
+
+            } else {
+                $error = array('error' => $this->upload->display_errors());
+                $this->_returnAjax(false, "Uploading file failed.");
             }
+
         }
 
         $this->_returnAjax(false, "Change the title.");
@@ -58,26 +86,56 @@ class Advertisements extends MY_Controller
     public function edit()
     {
         $this->_access("post");
-        $this->load->helper(array('form', 'url'));
-		$this->load->library('form_validation');
+        $this->load->library('form_validation');
+
+        $data = $this->input->post();
+
+        $fileInRequest = $this->_fileInRequest();
+        if ($fileInRequest === true) {
+            // upload file configuration
+            $config['upload_path']          = "./upload/";
+            $config['allowed_types']        = "gif|jpg|png|jpeg";
+            $config['file_name']            = $data["title"];
+            $config['overwrite']            = false;
+            $config['max_size']             = 100000;
+            $config['max_width']            = 10240;
+            $config['max_height']           = 7680;
+            $config['file_ext_tolower']     = true;
+
+            $this->load->library('upload', $config);
+        }
 
         $rules = array(
             array(
                 "field" => "id",
                 "label" => "ID",
-                "rules" => "required|numeric"
-            ),
+                "rules" => "required"
+            )
         );
 
         $this->form_validation->set_rules($rules);
 
-        if (empty($this->input->post("id"))) {
-
+        if (empty($data["id"]) === true) {
             $this->_returnAjax(false, "ID field is required!");
-        } else if ($this->form_validation->run() !== false) {
+        } else if ($this->form_validation->run() === true) {
+            if ($fileInRequest === true) {
+                if ($this->upload->do_upload("picture") === true) {
+                    // get data for uploaded image
+                    $newImgData = $this->upload->data();
+                    $data["picture"] = $newImgData["file_name"];
+                    // get data for actual image and remove it
+                    $actualAd = $this->Advertisements_model->getAd($data["id"]);
+                    $actualImgPath = FCPATH . "upload/{$actualAd->picture}";
+                    if (file_exists($actualImgPath) === true) {
+                        unlink($actualImgPath);
+                    }
+                } else {
+                    $error = array('error' => $this->upload->display_errors());
+                    $this->_returnAjax(false, "Uploading file failed.");
+                }
+            }
 
-            $status = $this->Advertisements_model->update($this->input->post());
-
+            $status = $this->Advertisements_model->update($data);
             $this->_returnAjax($status);
         }
 
@@ -100,5 +158,13 @@ class Advertisements extends MY_Controller
         $status = $this->Advertisements_model->enable($this->input->post());
 
         $this->_returnAjax($status);
+    }
+
+    protected function _fileInRequest()
+    {
+        if (empty($_FILES["picture"]["name"]) === true) {
+            return false;
+        }
+        return true;
     }
 }

@@ -20,4 +20,9 @@ class Ads extends MY_Controller
         $data = $this->Advertisements_model->getAdList();
         $this->_returnAjax(true, $data);
     }
+
+    public function form()
+    {
+        $this->load->view("form");
+    }
 }
