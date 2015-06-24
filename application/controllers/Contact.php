@@ -15,24 +15,33 @@ class Contact extends MY_Controller
     // User sends mail to admin
     public function sendMail()
     {
-        $data = $this->input->post();        
-        
-        // Admin email
-        $admin = "zoran.felbar@gmail.com";
-        
-        // User data
-        $email = $data["email"];
-        $name = $data["name"];
-        $subject = $data["subject"];
-        $message = $data["message"];
+        $data = $this->input->post();
         
         // Helper/Library
         $this->load->library('email');
-        $this->load->library('form_validation');
         $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+        
+        // Rules for form validation
+        $this->form_validation->set_rules("email", "Email", "required");
+        $this->form_validation->set_rules("message", "Message", "required");
+
+        // Če uporabnik ni izpolnil vse polj
+        if ($this->form_validation->run() === false) {
+           
+            $this->_returnAjax(false, "Izpolni vsa polja");
+        }
+
+        // Admin email
+        $admin = "zoran.felbar@gmail.com";
+
+        // User data
+        $email = $data["email"];
+        $subject = "Spletna stran - povpraševanje";
+        $message = $data["message"];
 
         // Sending mail from, user -> admin
-        $this->email->from($email, $name);
+        $this->email->from($email);
         $this->email->to($admin); 
 
         $this->email->subject($subject);
@@ -41,6 +50,8 @@ class Contact extends MY_Controller
         // Send mail
         $this->email->send();
 
-        //echo $this->email->print_debugger();
+        //$errro = $this->email->print_debugger()
+
+        $this->_returnAjax(true, "Email uspesno poslan.");
     } 
 }
