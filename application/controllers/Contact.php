@@ -15,16 +15,7 @@ class Contact extends MY_Controller
     // User sends mail to admin
     public function sendMail()
     {
-        $data = $this->input->post();
-        var_dump($data);
-        
-        // Config
-        $config = array();
-        $config['protocol'] = 'sendmail';
-        $config['mailtype'] = 'html';
-        $config['charset']  = 'utf-8';
-        $config['newline']  = "\r\n";
-        
+        $data = $this->input->post();        
         
         // Admin email
         $admin = "zoran.felbar@gmail.com";
@@ -39,9 +30,6 @@ class Contact extends MY_Controller
         $this->load->library('email');
         $this->load->library('form_validation');
         $this->load->helper(array('form', 'url'));
-        
-        // Init
-        $this->email->initialize($config);
 
         // Sending mail from, user -> admin
         $this->email->from($email, $name);
