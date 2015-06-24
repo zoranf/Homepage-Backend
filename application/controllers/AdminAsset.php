@@ -4,13 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Services for admin control purposes
  */
-class Advertisements extends MY_Controller
+class AdminAsset extends MY_Controller
 {
     function __construct()
     {
         parent::__construct();
         $this->_checkAuthentication();
-        $this->load->model("Advertisements_model");
+        $this->load->model("Assets_model");
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
     }
@@ -19,7 +19,7 @@ class Advertisements extends MY_Controller
     public function get()
     {
         $this->_access("get");
-        $data = $this->Advertisements_model->getAdList(Advertisements_model::FULL_LIST);
+        $data = $this->Assets_model->getAdList(Assets_model::FULL_LIST);
         $this->_returnAjax(true, $data);
     }
 
@@ -66,7 +66,7 @@ class Advertisements extends MY_Controller
 
                 $uploadData = $this->upload->data();
                 $data["picture"] = $uploadData["file_name"];
-                $status = $this->Advertisements_model->add($data);
+                $status = $this->Assets_model->add($data);
 
                 if (is_int($status) === true) {
                     $this->_returnAjax(true, ["id" => $status]);
@@ -124,7 +124,7 @@ class Advertisements extends MY_Controller
                     $newImgData = $this->upload->data();
                     $data["picture"] = $newImgData["file_name"];
                     // get data for actual image and remove it
-                    $actualAd = $this->Advertisements_model->getAd($data["id"]);
+                    $actualAd = $this->Assets_model->getAd($data["id"]);
                     $actualImgPath = FCPATH . "upload/{$actualAd->picture}";
                     if (file_exists($actualImgPath) === true) {
                         unlink($actualImgPath);
@@ -135,7 +135,7 @@ class Advertisements extends MY_Controller
                 }
             }
 
-            $status = $this->Advertisements_model->update($data);
+            $status = $this->Assets_model->update($data);
             $this->_returnAjax($status);
         }
 
@@ -146,7 +146,7 @@ class Advertisements extends MY_Controller
     public function delete()
     {
         $this->_access("delete");
-        $status = $this->Advertisements_model->delete($this->input->post("id"));
+        $status = $this->Assets_model->delete($this->input->post("id"));
 
         $this->_returnAjax(true);
     }
@@ -155,7 +155,7 @@ class Advertisements extends MY_Controller
     public function enable()
     {
         $this->_access("put");
-        $status = $this->Advertisements_model->enable($this->input->post());
+        $status = $this->Assets_model->enable($this->input->post());
 
         $this->_returnAjax($status);
     }

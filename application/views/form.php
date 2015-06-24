@@ -1,4 +1,4 @@
-<form id="formId" action="<?= site_url("Ads/upload"); ?>" method="post" enctype="multipart/form-data">
+<form id="formId" action="<?= site_url("AdminAsset/upload"); ?>" method="post" enctype="multipart/form-data">
     Select image to upload:
     <input type="text" name="title">
     <input type="file" name="picture" id="picture">
@@ -15,8 +15,8 @@
             // data.append("id", 9);
 
             $.ajax({
-                // url: "http://eko.dev:8080/Advertisements/edit",
-                url: "http://eko.dev:8080/Advertisements/post",
+                // url: "http://eko.dev:8080/AdminAsset/edit",
+                url: "http://eko.dev:8080/AdminAsset/post",
                 data: data,//new FormData($("#formId")[0]),
                 processData: false,
                 contentType: false, 

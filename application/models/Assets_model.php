@@ -1,6 +1,6 @@
 <?php
 
-class Advertisements_model extends CI_Model
+class Assets_model extends CI_Model
 {
     /**
      * Flag for not getting full list of ads
