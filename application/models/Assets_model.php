@@ -34,8 +34,10 @@ class Assets_model extends CI_Model
     {
         $sql = "SELECT * FROM advertisements WHERE id = {$id}";
         $query = $this->db->query($sql);
-
-        return $query->result()[0];
+        if ($query->num_rows() !== 0) {
+            return $query->result()[0];
+        }
+        return false;
     }
 
     // Insert advertisement

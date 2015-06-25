@@ -125,10 +125,7 @@ class AdminAsset extends MY_Controller
                     $data["picture"] = $newImgData["file_name"];
                     // get data for actual image and remove it
                     $actualAd = $this->Assets_model->getAd($data["id"]);
-                    $actualImgPath = FCPATH . "upload/{$actualAd->picture}";
-                    if (file_exists($actualImgPath) === true) {
-                        unlink($actualImgPath);
-                    }
+                    $this->_removeFile($actualAd->picture);
                 } else {
                     $error = array('error' => $this->upload->display_errors());
                     $this->_returnAjax(false, "Uploading file failed.");
@@ -136,6 +133,9 @@ class AdminAsset extends MY_Controller
             }
 
             $status = $this->Assets_model->update($data);
+            if ($status === false) {
+                $this->_removeFile($actualAd->picture);
+            }
             $this->_returnAjax($status);
         }
 
@@ -146,6 +146,12 @@ class AdminAsset extends MY_Controller
     public function delete()
     {
         $this->_access("delete");
+        $data = $this->input->post();
+        $asset = $this->Assets_model->getAd($data["id"]);
+        if ($asset === false) {
+            $this->_returnAjax(false, "This ad does not exists.");
+        }
+        $this->_removeFile($asset->picture);
         $status = $this->Assets_model->delete($this->input->post("id"));
 
         $this->_returnAjax(true);
