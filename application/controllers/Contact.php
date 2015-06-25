@@ -10,48 +10,40 @@ class Contact extends MY_Controller
     {
         parent::__construct();
         //$this->_checkAuthentication(); // Kontrola prometa
+        $this->config->load("siteconfig");
     }
     
     // User sends mail to admin
     public function sendMail()
     {
+        $this->_access("post");
         $data = $this->input->post();
         
-        // Helper/Library
-        $this->load->library('email');
-        $this->load->helper(array('form', 'url'));
+        // form validation
         $this->load->library('form_validation');
-        
-        // Rules for form validation
         $this->form_validation->set_rules("email", "Email", "required");
         $this->form_validation->set_rules("message", "Message", "required");
 
-        // Če uporabnik ni izpolnil vse polj
         if ($this->form_validation->run() === false) {
-           
             $this->_returnAjax(false, "Izpolni vsa polja");
         }
 
-        // Admin email
-        $admin = "zoran.felbar@gmail.com";
+        // load email configuration
+        $emailConfiguration = $this->config->item("email_configuration");
+        $this->load->library("email", $emailConfiguration);
 
-        // User data
-        $email = $data["email"];
+        // Email data
         $subject = "Spletna stran - povpraševanje";
-        $message = $data["message"];
+        $message = $this->load->view("emailTemplate", $data, true);
 
-        // Sending mail from, user -> admin
-        $this->email->from($email);
-        $this->email->to($admin); 
-
+        // Sending mail
+        $this->email->from($emailConfiguration["smtp_user"]);
+        $this->email->to($emailConfiguration["smtp_user"]);
         $this->email->subject($subject);
         $this->email->message($message);	
-
-        // Send mail
-        $this->email->send();
-
-        //$errro = $this->email->print_debugger()
-
-        $this->_returnAjax(true, "Email uspesno poslan.");
+        if ($this->email->send() === true) {
+            $this->_returnAjax(true, "Email uspesno poslan.");
+        }
+        $this->_returnAjax(false, "Email ni uspešno poslan.");
     } 
 }
