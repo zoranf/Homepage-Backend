@@ -54,4 +54,12 @@ class MY_Controller extends CI_Controller
             $this->_returnAjax(false, "Please authenticate first.");
         }
     }
+
+    protected function _removeFile($picName)
+    {
+        $absPath = FCPATH . "upload/{$picName}";
+        if (file_exists($absPath) === true) {
+            unlink($absPath);
+        }
+    }
 }

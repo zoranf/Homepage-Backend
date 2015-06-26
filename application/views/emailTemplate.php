@@ -1,0 +1,4 @@
+<div>
+    <?= $email; ?>
+    <?= $message; ?>
+</div>
