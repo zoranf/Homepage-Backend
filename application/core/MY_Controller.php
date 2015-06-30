@@ -25,7 +25,7 @@ class MY_Controller extends CI_Controller
         $return["success"] = $success;
         if ($success === false) {
             // data should be string now
-            $return["error"] = ["message" => $data];
+            $return["error"] = $data;
         } else {
             $return["data"] = $data;
         }
@@ -51,7 +51,7 @@ class MY_Controller extends CI_Controller
     {
         $loggedIn = $this->session->userdata("loggedIn");
         if (isset($loggedIn) === false) {
-            $this->_returnAjax(false, "Please authenticate first.");
+            $this->_returnAjax(false, ["type" => "AUTH_NEEDED"]);
         }
     }
 
