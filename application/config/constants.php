@@ -89,4 +89,4 @@ define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
  * SITE CONSTANTS
  */
 // backend version
-define('BACKEND_VERSION', "1.1");
+define('BACKEND_VERSION', "1.2");
