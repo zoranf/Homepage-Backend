@@ -1,0 +1,13 @@
+<div class="slider-wrapper">
+    <div slider="sliderList"></div>
+    <div class="asset-slider-wrapper">
+        <ul class="asset-slider" slider>
+            <li ng-repeat="asset in sliderList track by asset.id"
+                backgr-img="{{asset.picture}}"
+                on-finish-render="ngRepeatFinished"
+            >
+                <div class="title">{{asset.title}}</div>
+            </li>
+        </ul>
+    </div>
+</div>
