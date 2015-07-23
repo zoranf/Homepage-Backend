@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="kmetijaApp">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Kmetija angular</title>
+        <link href="angjs/style.css" rel="stylesheet" />
+    </head>
+    <body>
+    <div ng-view></div>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular-route.min.js"></script>
+    <script src="angjs/resources/scripts/lib/jquery.bxslider/jquery.bxslider.min.js"></script>
+    <!-- Helpers -->
+    <script src="angjs/app/helpers/restCall.js"></script>
+    <!-- Angular main -->
+    <script src="angjs/app/app.js"></script>
+    <!-- FEATURES -->
+    <!-- Admin Login -->
+    <script src="angjs/app/adminLogin/loginService.js"></script>
+    <script src="angjs/app/adminLogin/adminLoginCtrl.js"></script>
+    <!-- Admin -->
+    <script src="angjs/app/admin/assetDirectives.js"></script>
+    <script src="angjs/app/admin/assetService.js"></script>
+    <script src="angjs/app/admin/adminCtrl.js"></script>
+    <!-- Main page -->
+    <script src="angjs/app/main/sliderDirectives.js"></script>
+    <script src="angjs/app/main/sliderService.js"></script>
+    <script src="angjs/app/main/sliderCtrl.js"></script>
+    </body>
+</html>

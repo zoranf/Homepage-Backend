@@ -1,0 +1,12 @@
+<div class="admin-panel">
+    <ul class="asset-list">
+        <li ng-repeat="asset in assetList track by asset.id"
+            backgr-img="{{asset.picture}}"
+            ng-click="toggleEnabled(asset)"
+        >
+            <div class="gray-overlay" ng-class="{enabled:asset.enabled === '1', disabled:asset.enabled === '0'}"></div>
+            <div class="title">{{asset.title}}</div>
+        </li>
+    </ul>
+    <div class="link" ng-click="go('/home')">Nazaj na domačo stran</div>
+</div>
