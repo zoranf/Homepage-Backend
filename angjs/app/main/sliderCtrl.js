@@ -10,8 +10,8 @@ kmtApp.controller("sliderCtrl", ["$scope", "sliderService", function($scope, sli
         $(".asset-slider").bxSlider({
             mode: 'fade',
             captions: true,
-            buildPager: function(slideIndex) {
-                return '' + slideIndex;
+            buildPager: function(index) {
+                return '<div class="current' + index + ' button"></div>';
             },
             nextText: '<div class="nextText"></div>',
             prevText: '<div class="previousText"></div>'
