@@ -5,6 +5,7 @@
             <li ng-repeat="asset in sliderList track by asset.id"
                 backgr-img="{{asset.picture}}"
                 on-finish-render="ngRepeatFinished"
+                class="sliderImage"
             >
                 <div class="title">{{asset.title}}</div>
             </li>

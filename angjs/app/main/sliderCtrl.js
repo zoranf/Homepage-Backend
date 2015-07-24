@@ -13,8 +13,8 @@ kmtApp.controller("sliderCtrl", ["$scope", "sliderService", function($scope, sli
             buildPager: function(slideIndex) {
                 return '' + slideIndex;
             },
-            nextText: "Naslednja",
-            prevText: "Prejšnja"
+            nextText: '<div class="nextText"></div>',
+            prevText: '<div class="previousText"></div>'
         });
     });
 }]);
