@@ -1,6 +1,6 @@
 .nextText {
-    position: fixed;
-    top: 80px;
+    position: absolute;
+    top: 84px;
     right: 20px;
     width: 33px;
     height: 32px;
@@ -14,14 +14,19 @@
 }
 
 .previousText {
-    position: fixed;
-    top: 80px;
+    position: absolute;
+    top: 84px;
     left: 20px;
     width: 33px;
     height: 31px;
     background-image: url("../images/controls.png");
     background-position: 0px 0px;
     z-index: 10000;
+}
+
+.slider-wrapper {
+    position: relative;
+    width: 100%;
 }
 
 .previousText:hover {
@@ -70,4 +75,8 @@
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
+}
+
+#nav {
+    height: 2000px;
 }
