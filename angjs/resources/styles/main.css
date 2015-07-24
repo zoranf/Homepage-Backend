@@ -36,10 +36,8 @@
     background-position: 62px -28px;
 }
 
-
 .button {
     margin: 5px;
-    float: left;
     width: 7px;
     height: 7px;
     background-image: url("../images/controls.png");
@@ -62,9 +60,13 @@
     background-color: #f2f1f1;
 }
 
-.bx-custom-pager {
+.bx-pager-item {
+    float: left;
+}
+
+.bx-pager {
     overflow: auto;
-    width: 200px;
+    display: table;
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
