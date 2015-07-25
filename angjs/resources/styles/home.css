@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    background: #f0eee3;
+    font-family: Cambria;
+    font-size: 18px;
+    color: #434343;
+}
+
+.center {
+    margin: auto;
+    max-width: 900px;
+}
+
+#header {
+    overflow: auto;
+}
+
+#navigation {
+    font-size: 25px;
+    list-style-type: none;
+    font-weight: bold;
+}
+
+#navigation ul { float: right; }
+#navigation li { display: inline; }
+
+
+#content li:nth-child(even) {
+    background: #e5e3d9;
+}

@@ -1,9 +1,3 @@
-* {
-    box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
-}
-
 .admin-panel .link {
     text-align: center;
     padding: 10px;
@@ -35,6 +29,7 @@
     padding-left: 20px;
     z-index: 10;
     opacity: 1;
+    color: #FFF;
 }
 
 .asset-list li .gray-overlay.disabled {
@@ -45,11 +40,4 @@
     width: 100%;
     height: 100%;
     opacity: 0.8;
-}
-
-.asset-slider li {
-    background-repeat: no-repeat;
-    width: 500px;
-    height: 200px;
-    margin: 0 auto;
 }
