@@ -1,4 +1,4 @@
-kmtApp.factory("loginService", function($http, $location) {
+app.factory("loginService", function($http, $location) {
     return {
         authenticate: function(successCallback, username, password){
             var status = false;

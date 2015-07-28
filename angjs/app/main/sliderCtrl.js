@@ -1,4 +1,4 @@
-kmtApp.controller("sliderCtrl", ["$scope", "sliderService", function($scope, sliderService){
+app.controller("sliderCtrl", ["$scope", "sliderService", function($scope, sliderService, $location, $anchorScroll) {
     // sliderCtrl controller
     $scope.sliderList = [];
 
@@ -18,3 +18,11 @@ kmtApp.controller("sliderCtrl", ["$scope", "sliderService", function($scope, sli
         });
     });
 }]);
+
+// Scroll to section
+app.controller('scrollToCtrl', function($scope, $location, $anchorScroll) {
+    $scope.scrollTo = function(id) {
+        $location.hash(id);
+        $anchorScroll();
+    };
+});

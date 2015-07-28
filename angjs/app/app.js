@@ -3,9 +3,9 @@ var BACKEND_IP = "http://eko.dev:8080/";
 var BASE_PATH = "angjs/app/";
 
 // application start
-var kmtApp = angular.module("kmetijaApp", ["ngRoute"]);
+var app = angular.module("kmetijaApp", ["ngRoute"]);
 
-kmtApp.config(function($routeProvider, $httpProvider) {
+app.config(function($routeProvider, $httpProvider) {
     // routes
     $routeProvider
         .when("/", {
@@ -18,7 +18,7 @@ kmtApp.config(function($routeProvider, $httpProvider) {
         })
         .when("/admin-login", {
             templateUrl: BASE_PATH + "adminLogin/_admin-login.html",
-            controller: "adminLoginCtrl"
+            cosntroller: "adminLoginCtrl"
         })
         .otherwise({
             redirectTo: "/"

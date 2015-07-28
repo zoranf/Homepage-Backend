@@ -1,4 +1,4 @@
-kmtApp.factory("assetService", function($http, $location) {
+app.factory("assetService", function($http, $location) {
     return {
         getAssets: function(successCallback){
             sendRequest(

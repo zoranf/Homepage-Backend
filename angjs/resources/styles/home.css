@@ -17,7 +17,10 @@ html {
 }
 
 #header {
-    overflow: auto;
+    position: relative;
+    z-index: 1001;
+    width: 100%;
+    line-height: 84px;
 }
 
 #navigation {
@@ -28,8 +31,4 @@ html {
 
 #navigation ul { float: right; }
 #navigation li { display: inline; }
-
-
-#content li:nth-child(even) {
-    background: #e5e3d9;
-}
+#content li:nth-child(even) { background: #e5e3d9; }

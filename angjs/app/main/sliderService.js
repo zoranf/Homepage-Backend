@@ -1,4 +1,4 @@
-kmtApp.factory("sliderService", function($http, $location) {
+app.factory("sliderService", function($http, $location) {
     return {
         getAssets: function(successCallback){
             sendRequest(

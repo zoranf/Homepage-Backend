@@ -1,15 +1,15 @@
-<div id="header">
-    <nav class="center">
+<div id="header" class="activeHeader" ng-app="app">
+    <div class="center">
         <div id="navigation">
             <ul>
-                <li>O NAS</li>
-                <li>PONUDBA</li>
+                <li ng-click="directiveScroll()">O NAS</li>
+                <li id="nekaj">PONUDBA</li>
                 <li>PRODAJNA MESTA</li>
                 <li>KONTAKT</li>
             </ul>
         </div>
-    </nav>
-</div>
+    </div>
+</div>-
 
 <div class="slider-wrapper">
     <div slider="sliderList"></div>
@@ -27,8 +27,9 @@
 </div>
 
 <!-- PAGE CONTENT -->
+<div>
 <ul id="content">
-    <li>
+    <li id="about">
         <div class="center">
             <h2>O NAS</h2>
             Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
@@ -37,9 +38,27 @@
             Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
             Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
             Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
         </div>
     </li>
-    <li>
+    <li id="offer">
         <div class="center">
             <h2>PONUDBA</h2>
             Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
@@ -50,7 +69,7 @@
             Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
         </div>
     </li>
-    <li>
+    <li id="sell">
         <div class="center">
             <h2>PRODAJNA MESTA</h2>
             Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
@@ -61,10 +80,21 @@
             Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
         </div>
     </li>
-    <li>
+    <li id="contact">
         <div class="center">
             <h2>KONTAKT</h2>
             Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
         </div>
     </li>
 </ul>
+</div>-
+<a ng-click="scrollTo('bottom')" ng-controller="scrollToCtrl" id="top">click me</a>
+<a ng-click="scrollTo('bottomer')" ng-controller="scrollToCtrl">click me</a>
+
+<div style='height:2000px'></div>
+<h1 id="bottom">hello this is bottom</h1>
+<div style='height:2000px'></div>
+<h1 id="bottomer">
+    hello this is bottomer.<br>
+    <a ng-click="scrollTo('top')" ng-controller="jumpToCtrl" id="top">Go top</a>
+</h1>

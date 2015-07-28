@@ -30,6 +30,7 @@
 }
 
 .slider-wrapper {
+    clear: right;
     position: relative;
     width: 100%;
 }
@@ -75,4 +76,5 @@
     font-size: 50px;
     color: #FFF;
     display: inline-block;
+    text-shadow: 1px 1px 1px #434343;
 }

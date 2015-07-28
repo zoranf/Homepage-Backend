@@ -1,4 +1,4 @@
-kmtApp.directive('onFinishRender', function ($timeout) {
+app.directive('onFinishRender', function ($timeout) {
     return {
         restrict: 'A',
         link: function (scope, element, attr) {
