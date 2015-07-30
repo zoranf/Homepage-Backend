@@ -18,7 +18,6 @@ function jumpTo(section)
 $(window).bind('scroll', function () {
     if ($(window).scrollTop() > 50) {
         $('#header').css({
-                      "transition": "background-color 0.5s ease",
                       "background-color": "#434343",
                       "position": "fixed",
                       "color": "#FFF",
@@ -26,7 +25,6 @@ $(window).bind('scroll', function () {
                     });
     } else {
         $('#header').css({
-                      "transition": "background-color 0.5s ease",
                       "background-color": "#f0eee3",
                       "position": "relative",
                       "color": "#434343",
