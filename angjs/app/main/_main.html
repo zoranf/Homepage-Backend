@@ -2,14 +2,14 @@
     <div class="center">
         <div id="navigation">
             <ul>
-                <li ng-click="directiveScroll()">O NAS</li>
-                <li id="nekaj">PONUDBA</li>
-                <li>PRODAJNA MESTA</li>
-                <li>KONTAKT</li>
+                <li><a ng-click="scrollTo('about')" ng-controller="scrollCtrl">O NAS</a></li>
+                <li><a ng-click="scrollTo('offer')" ng-controller="scrollCtrl">PONUDBA</a></li>
+                <li><a ng-click="scrollTo('contact')" ng-controller="scrollCtrl">KONTAKT</a></li>
+                <li><a ng-click="scrollTo('map')" ng-controller="scrollCtrl">ZEMLJEVID</a></li>
             </ul>
         </div>
     </div>
-</div>-
+</div>
 
 <div class="slider-wrapper">
     <div slider="sliderList"></div>
@@ -32,69 +32,120 @@
     <li id="about">
         <div class="center">
             <h2>O NAS</h2>
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+            <p class="medium">
+                <img src="../upload/about/slika2.jpg" class="slika2" />
+                Ekološko kmetijo Berden najdemo na ravnici sredi Prlekije, obdano z gozdom in odmaknjeno od glavnih prometnih cest. Kmetija obsega 6 hektarjev
+                obdelovalnih površin, ter skoraj 3 hektarje gozda, za katero skrbijo člani družine. Kmetija je zavezana naravi in skrbi za okolje zato tudi potrošnike
+                oskrbuje z zdravo in svežo zelenjavo
+                </br></br>
+                <img src="../upload/about/slika3.jpg" class="slika2" />
+                Na ekološki kmetiji vzrejajo tudi različne vrste živali, in sicer krškopoljske pujse, štajerske kokoši ter ovce in
+                koze, ki se skupaj prosto pasejo na pašnikih.
+                Na kmetiji se ukvarjajo s pridelavo in predelavo zelenjave ter
+                vzgojo sadik zelenjadnic. Ekološke pridelke in izdelke najdete na ekološki tržnici v Mariboru in na tržnici v
+                Murski Soboti. Sodelujejo pa tudi v projektu partnerskega kmetovanja, ki ponujajo sezonske zelenjavne
+                zabojčke v Mariboru in oskrbujejo nekaj šol in vrtcev.
+                <img src="../upload/about/slika1.jpg" class="slika1"/>
+            </p>
         </div>
     </li>
     <li id="offer">
         <div class="center">
-            <h2>PONUDBA</h2>
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+            <h2>KAJ PONUJAMO</h2>
+            <h4>SVEŽA EKO ZELENJAVA</h4>
         </div>
-    </li>
-    <li id="sell">
+        <div id="zelenjava" class="center">
+            <ul id="list-1" >
+                <li>začimbe</li>
+                <li>bučke</li>
+                <li>korenček</li>
+                <li>kumare</li>
+                <li>solata</li>
+                <li>ohrovt</li>
+                <li>paradižnik</li>
+                <li>čebula</li>
+            </ul>
+            <ul id="list-2">
+                <li>solata</li>
+                <li>zelišča</li>
+                <li>fižol</li>
+                <li>česen</li>
+                <li>zelje</li>
+                <li>paprika</li>
+                <li>krompir</li>
+            </ul>
+            <ul id="imgList">
+                <li><img src="../upload/zelenjava/slika1.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika2.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika3.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika4.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika5.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika6.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika7.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika8.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika9.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika10.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika11.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika12.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika13.jpg" /></li>
+            </ul>
+        </div>
+        <div id="vegy"></div>
         <div class="center">
-            <h2>PRODAJNA MESTA</h2>
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+            <h4>PREDELANA EKO ZELENJAVA</h4>
+        </div>
+        <div id="zelenjava" class="center">
+            <ul id="list-1" >
+                <li>kumare</li>
+                <li>cvetača</li>
+                <li>stročji fižol</li>
+                <li>ketchup</li>
+                <li>čemažev pesto v bučnem / sončničnem olju</li>
+            </ul>
+            <ul id="list-2">
+                <li>paprika</li>
+                <li>mešana solata</li>
+                <li>paradižnikova omaka</li>
+                <li>mešanica suhih začimb brez soli</li>
+            </ul>
+            <ul id="imgList">
+                <li><img src="../upload/zelenjava/slika1.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika2.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika3.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika4.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika5.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika6.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika7.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika8.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika9.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika10.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika11.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika12.jpg" /></li>
+                <li><img src="../upload/zelenjava/slika13.jpg" /></li>
+            </ul>
         </div>
     </li>
     <li id="contact">
         <div class="center">
             <h2>KONTAKT</h2>
-            Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani Vsebina strani
+        </div>
+    </li>
+    <li>
+        <div id="numbers">
+            <div class="center">
+                <span>Marjan Berden: 041 631 281</span>
+                <span>Marko Berden: 040 736 512</span>
+                <span>Patricija Berden: 031 720 511</span>
+            </div>
+        </div>
+    </li>
+    <li id="location">
+        <div class="center">
+            <h2>KJE NAS LAHKO NAJDETE</h2>
+        </div>
+        <div id="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3838.3380973456624!2d16.06957919999949!3d46.60981041487218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476f401eba9f7f6d%3A0x7ec00d7e1a0562be!2sHrastje+-+Mota+89%2C+9252+Radenci!5e1!3m2!1ssl!2ssi!4v1438276090750" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
         </div>
     </li>
 </ul>
-</div>-
-<a ng-click="scrollTo('bottom')" ng-controller="scrollToCtrl" id="top">click me</a>
-<a ng-click="scrollTo('bottomer')" ng-controller="scrollToCtrl">click me</a>
-
-<div style='height:2000px'></div>
-<h1 id="bottom">hello this is bottom</h1>
-<div style='height:2000px'></div>
-<h1 id="bottomer">
-    hello this is bottomer.<br>
-    <a ng-click="scrollTo('top')" ng-controller="jumpToCtrl" id="top">Go top</a>
-</h1>
+</div>

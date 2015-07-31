@@ -15,7 +15,8 @@ function jumpTo(section)
 }
 
 // Scroll
-$(window).bind('scroll', function () {
+$(window).bind('scroll', function ()
+{
     if ($(window).scrollTop() > 50) {
         $('#header').css({
                       "background-color": "#434343",
