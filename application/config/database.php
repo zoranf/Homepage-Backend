@@ -64,11 +64,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost', // mysql.hostinger.co.uk
-	'username' => 'postgres', // u229496114_user
-	'password' => '123', // user123
-	'database' => 'kmetija', // u229496114_name
-	'dbdriver' => 'postgre',
+	'hostname' => 'mysql.hostinger.co.uk', // mysql.hostinger.co.uk
+	'username' => 'u767129990_qwe12', // u229496114_user
+	'password' => 'user132', // user123
+	'database' => 'u767129990_sg253', // u229496114_name
+	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => FALSE,
@@ -83,3 +83,11 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+/*
+'hostname' => 'localhost', // mysql.hostinger.co.uk
+'username' => 'postgres', // u229496114_user
+'password' => '123', // user123
+'database' => 'kmetija', // u229496114_name
+'dbdriver' => 'postgre',
+*/
