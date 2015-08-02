@@ -56,16 +56,32 @@ html {
 
 #zelenjava {
     margin-top: 20px;
+    margin-bottom: 20px;
 }
+
+#zelenjava .title {
+    color: #577f0a;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 #zelenjava #list-1 li,
 #zelenjava #list-2 li {
-    cursor: pointer;
+    cursor: default;
     text-align: center;
+    margin: 3px;
     margin-bottom: 5px;
     background: #f0eee3;
     border-radius: 2px;
-    padding: 5px;
+    padding: 10px;
     display: inline-block;
+}
+#zelenjava img {
+    display: block;
+    height: 70px;
+    width: auto;
+    margin: 0 auto;
+    margin-top: 10px;
 }
 
 #zelenjava #list-1 li:hover,
@@ -87,7 +103,7 @@ html {
 }
 
 #vegy {
-    background: url('http://eko.dev:8080/upload/vegy.jpg');
+    background: url('http://eko-berden.zz.mu//upload/vegy.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     -webkit-background-size: cover;
