@@ -1,4 +1,4 @@
-kmtApp.controller("adminCtrl", ["$scope", "$http", "$location", "assetService", function($scope, $http, $location, assetService) {
+app.controller("adminCtrl", ["$scope", "$http", "$location", "assetService", function($scope, $http, $location, assetService) {
 
     $scope.assetList = [];
 

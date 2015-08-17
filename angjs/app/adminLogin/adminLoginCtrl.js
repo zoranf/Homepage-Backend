@@ -1,4 +1,4 @@
-kmtApp.controller("adminLoginCtrl", ["$scope", "$http", "$location", "loginService", function($scope, $http, $location, loginService) {
+app.controller("adminLoginCtrl", ["$scope", "$http", "$location", "loginService", function($scope, $http, $location, loginService) {
 
     $scope.message = {
         error: ""
