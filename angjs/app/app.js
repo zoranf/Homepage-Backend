@@ -18,7 +18,7 @@ app.config(function($routeProvider, $httpProvider) {
         })
         .when("/admin-login", {
             templateUrl: BASE_PATH + "adminLogin/_admin-login.html",
-            cosntroller: "adminLoginCtrl"
+            controller: "adminLoginCtrl"
         })
         .otherwise({
             redirectTo: "/"
