@@ -1,7 +1,3 @@
-// path constants
-var BACKEND_IP = "http://eko.dev:8080/";
-var BASE_PATH = "angjs/app/";
-
 // application start
 var app = angular.module("kmetijaApp", ["ngRoute"]);
 
