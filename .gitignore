@@ -1,6 +1,5 @@
 tags
 tags_sorted_by_file
-upload/*
 application/config/siteconfig.php
 application/config/database.php
 .remote-sync.json
